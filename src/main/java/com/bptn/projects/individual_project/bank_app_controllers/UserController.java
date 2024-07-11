@@ -229,5 +229,40 @@ public class UserController {
 				System.out.println("Invalid date format. Please enter the date in the format yyyy-MM-dd.");
 			}
 		}
+
+		List<Transaction> allTransactions = transactionController.viewAllAccountByPeriod(startDate, endDate);
+		System.out.printf("%-20s%-40s%-20s%-20s%-20s%-20s%-20s%n", "Transaction ID", "Account name", "Amount",
+				"Operation", "Transaction Time", "Balance before", "Balance after");
+		for (Transaction transaction : allTransactions) {
+			System.out.printf("%-20d%-40s%-20.2f%-20s%-20s%-20.2f%-20.2f%n", transaction.getId(),
+					transaction.getAccountBalance().getOwner().getEmailAddress(), transaction.getAmountInvolved(),
+					transaction.getTimeOfTransaction().format(dateFormatter), transaction.getBalanceBefore(),
+					transaction.getBalanceAfter());
+		}
+	}
+
+	private void viewAllCustomers() {
+		System.out.printf("%-20s%-20s%-20s%-20s%-20s%n", "First name", "Last name", "Email address", "Account balance");
+		List<Customer> customers = customerController.getAllCustomers();
+		for (Customer customer : customers) {
+			System.out.printf("%-20s%-20s%-20s%-20s%-20.2f%n", customer.getFirstName(), customer.getLastName(),
+					customer.getEmailAddress(), customer.getAccountBalance().getBalance());
+		}
+	}
+
+	private void viewCustomer() {
+		System.out.print("Enter the customer's email address: ");
+		String email = scanner.next();
+		try {
+			Customer customer = customerController.getCustomerByEmail(email);
+			System.out.printf("%-20s:%s%n", "First name", customer.getFirstName());
+			System.out.printf("%-20s:%s%n", "Last name", customer.getLastName());
+			System.out.printf("%-20s:%s%n", "Email address", customer.getEmailAddress());
+			System.out.printf("%-20s:%.2f%n", "Account balance", customer.getAccountBalance().getBalance());
+			System.out.println();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 }
