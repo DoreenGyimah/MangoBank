@@ -50,6 +50,56 @@ public class UserController {
 			System.exit(0);
 		}
 		}
+		if (user instanceof Customer) {
+			option = -1;
+			do {
+				System.out.println("** Welcome to MangoBank **");
+				option = optionsCustomer();
+				switch (option) {
+				case 1: {
+					doDeposit((Customer) user);
+					break;
+				}
+				case 2: {
+					doWithdraw((Customer) user);
+					break;
+				}
+				case 3: {
+					doViewBalance((Customer) user);
+					break;
+				}
+				case 4: {
+					System.out.println("Thank you for banking with us");
+					System.exit(0);
+				}
+				}
+			} while (true);
+
+		} else if (user instanceof Admin) {
+			option = -1;
+			do {
+				System.out.println("** Welcome to MangoBank **");
+				option = optionsAdmin();
+				switch (option) {
+				case 1: {
+					viewCustomer();
+					break;
+				}
+				case 2: {
+					viewAllCustomers();
+					break;
+				}
+				case 3: {
+					viewAllTransactions();
+					break;
+				}
+				case 4: {
+					System.out.println("Thank you for banking with us");
+					System.exit(0);
+				}
+				}
+			} while (true);
+		}
 	}
 
 	private User doRegister() {
@@ -264,5 +314,26 @@ public class UserController {
 			System.out.println(e.getMessage());
 		}
 
+	}
+
+	private int optionsAdmin() {
+		int option = 0;
+		do {
+			System.out.println("1. View Customer");
+			System.out.println("2. View All Customers");
+			System.out.println("3. View All Transactions by period");
+			System.out.println("4. Exit");
+			System.out.print("Select an option: ");
+			option = scanner.nextInt();
+		} while (isNotValidOptionAdmin(option));
+		return option;
+	}
+
+	private boolean isNotValidOptionAdmin(int option) {
+		if (option < 1 || option > 4) {
+			System.out.println("Invalid option. Select 1,2.3 or 4");
+			return true;
+		}
+		return false;
 	}
 }
