@@ -1,5 +1,6 @@
 package com.bptn.projects.individual_project.bank_app;
 
+//declare customer class and inherit properties from user
 public class Customer extends User {
 	private AccountBalance balance;
 

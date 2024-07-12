@@ -1,7 +1,6 @@
 package com.bptn.projects.individual_project.bank_app;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public abstract class User implements Serializable {
 

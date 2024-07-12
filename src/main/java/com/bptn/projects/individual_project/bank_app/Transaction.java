@@ -1,6 +1,5 @@
 package com.bptn.projects.individual_project.bank_app;
 
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -14,6 +13,8 @@ public class Transaction implements Serializable {
 	private double balanceAfter;
 	private String operation;
 
+	// transaction class constructor initialized using the setter method to set
+	// values to private instance variables
 	public Transaction(int id, double amountInvolved, AccountBalance accountBalance, LocalDateTime timeOfTransaction,
 			double balanceBefore, double balanceAfter, String operation) {
 		this.setId(id);
