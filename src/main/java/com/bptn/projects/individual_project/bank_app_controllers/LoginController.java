@@ -4,10 +4,6 @@ import com.bptn.projects.individual_project.bank_app.Bank;
 import com.bptn.projects.individual_project.bank_app.User;
 import com.bptn.projects.individual_project.bank_app.Customer;
 import com.bptn.projects.individual_project.bank_app.Admin;
-import com.bptn.projects.individual_project.bank_app.AccountBalance;
-
-import java.time.LocalDate;
-import java.util.Scanner;
 
 public class LoginController extends Controller {
 	public LoginController(Bank bank) {
@@ -35,6 +31,5 @@ public class LoginController extends Controller {
 		}
 		return foundCustomer;
 	}
-	
-	
+
 }

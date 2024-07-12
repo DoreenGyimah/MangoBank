@@ -1,14 +1,14 @@
 package com.bptn.projects.individual_project.bank_app_controllers;
 
+import com.bptn.projects.individual_project.bank_app.AccountBalance;
+import com.bptn.projects.individual_project.bank_app.Bank;
+import com.bptn.projects.individual_project.bank_app.Transaction;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-
-import com.bptn.projects.individual_project.bank_app.AccountBalance;
-import com.bptn.projects.individual_project.bank_app.Bank;
-import com.bptn.projects.individual_project.bank_app.Transaction;
 
 public class TransactionController extends Controller {
 	public TransactionController(Bank bank) {

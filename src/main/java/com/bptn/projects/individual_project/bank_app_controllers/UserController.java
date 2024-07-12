@@ -109,7 +109,7 @@ public class UserController {
 		System.out.print("Enter your last name: ");
 		String lastName = scanner.nextLine();
 		String emailAddress = "";
-		//String input = scanner.nextLine();
+		// String input = scanner.nextLine();
 
 		do {
 			System.out.print("Enter your email address: ");
@@ -163,7 +163,7 @@ public class UserController {
 	}
 
 	final int optionsLogin() {
-		//scanner.nextLine();
+		// scanner.nextLine();
 		int option = 0;
 		do {
 			System.out.println("1. Login");
@@ -281,13 +281,13 @@ public class UserController {
 		}
 
 		List<Transaction> allTransactions = transactionController.viewAllAccountByPeriod(startDate, endDate);
-		System.out.printf("%-20s%-30s%-20s%-20s%-20s%-20s%-20s%n", "Transaction ID", "Account name", "Operation", "Amount",
-				"Operation", "Transaction Time", "Balance before", "Balance after");
+		System.out.printf("%-20s%-30s%-20s%-20s%-20s%-20s%-20s%n", "Transaction ID", "Account name", "Operation",
+				"Amount", "Operation", "Transaction Time", "Balance before", "Balance after");
 		for (Transaction transaction : allTransactions) {
 			System.out.printf("%-20d%-30s%-20s%-20.2f%-20s%-20.2f%-20.2f%n", transaction.getId(),
-					transaction.getAccountBalance().getOwner().getEmailAddress(), transaction.getOperation(), transaction.getAmountInvolved(),
-					transaction.getTimeOfTransaction().format(dateFormatter), transaction.getBalanceBefore(),
-					transaction.getBalanceAfter());
+					transaction.getAccountBalance().getOwner().getEmailAddress(), transaction.getOperation(),
+					transaction.getAmountInvolved(), transaction.getTimeOfTransaction().format(dateFormatter),
+					transaction.getBalanceBefore(), transaction.getBalanceAfter());
 		}
 	}
 

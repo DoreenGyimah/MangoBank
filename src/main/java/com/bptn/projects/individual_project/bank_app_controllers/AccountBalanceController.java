@@ -10,7 +10,8 @@ import java.util.Random;
 
 public class AccountBalanceController extends Controller {
 	private final String DEPOSIT = "DEPOSIT";
-    private final String WITHDRAW = "WITHDRAW";
+	private final String WITHDRAW = "WITHDRAW";
+
 	public AccountBalanceController(Bank bank) {
 		super(bank);
 	}
@@ -69,7 +70,7 @@ public class AccountBalanceController extends Controller {
 			throw new NullPointerException("Account balance is null");
 
 	}
-	
+
 	public void createAccountBalance(AccountBalance balance) {
 		getBank().getAllBalances().add(balance);
 	}
