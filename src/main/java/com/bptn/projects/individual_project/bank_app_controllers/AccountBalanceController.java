@@ -9,12 +9,10 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 public class AccountBalanceController extends Controller {
+	private final String DEPOSIT = "DEPOSIT";
+    private final String WITHDRAW = "WITHDRAW";
 	public AccountBalanceController(Bank bank) {
 		super(bank);
-	}
-
-	public void createAccountBalance(AccountBalance balance) {
-		getBank().getAllBalances().add(balance);
 	}
 
 	public void deposit(AccountBalance account, double amountInvolved) {
@@ -22,13 +20,18 @@ public class AccountBalanceController extends Controller {
 		if (account != null) {
 			double balanceBefore = account.getBalance();
 			// update balance
-			int id = TransactionController.generateNewTransactionID(getBank());
 			account.setBalance(account.getBalance() + amountInvolved);
+			// create a Transaction for this operation and save in Bank
+			int id = TransactionController.generateNewTransactionID(getBank());
+			//
 			LocalDateTime timeOfTransaction = LocalDateTime.now();
+			//
 			double balanceAfter = account.getBalance();
+			//
+			String operation = DEPOSIT;
 			// create a new Transaction and save it to database
 			Transaction transaction = new Transaction(id, amountInvolved, account, timeOfTransaction, balanceBefore,
-					balanceAfter);
+					balanceAfter, operation);
 			getBank().getAllTransactions().add(transaction);
 			Database.saveBankToFile(getBank());
 		} else
@@ -53,15 +56,22 @@ public class AccountBalanceController extends Controller {
 			account.setBalance(account.getBalance() - amountInvolved);
 			// create a Transaction for this operation and save in Bank
 			LocalDateTime timeOfTransaction = LocalDateTime.now();
+			//
 			double balanceAfter = account.getBalance();
+			//
+			String operation = WITHDRAW;
 			// create a new Transaction and save it to database
 			Transaction transaction = new Transaction(id, amountInvolved, account, timeOfTransaction, balanceBefore,
-					balanceAfter);
+					balanceAfter, operation);
 			getBank().getAllTransactions().add(transaction);
 			Database.saveBankToFile(getBank());
 		} else
 			throw new NullPointerException("Account balance is null");
 
+	}
+	
+	public void createAccountBalance(AccountBalance balance) {
+		getBank().getAllBalances().add(balance);
 	}
 
 	public double viewBalance(AccountBalance account) {

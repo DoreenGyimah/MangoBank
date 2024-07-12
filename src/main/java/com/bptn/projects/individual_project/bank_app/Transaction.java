@@ -1,5 +1,6 @@
 package com.bptn.projects.individual_project.bank_app;
 
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -11,15 +12,17 @@ public class Transaction implements Serializable {
 	private LocalDateTime timeOfTransaction;
 	private double balanceBefore;
 	private double balanceAfter;
+	private String operation;
 
 	public Transaction(int id, double amountInvolved, AccountBalance accountBalance, LocalDateTime timeOfTransaction,
-			double balanceBefore, double balanceAfter) {
+			double balanceBefore, double balanceAfter, String operation) {
 		this.setId(id);
 		this.setAmountInvolved(amountInvolved);
 		this.setAccountBalance(accountBalance);
 		this.setTimeOfTransaction(timeOfTransaction);
 		this.setBalanceBefore(balanceBefore);
 		this.setBalanceAfter(balanceAfter);
+		this.setOperation(operation);
 	}
 
 	public int getId() {
@@ -68,6 +71,14 @@ public class Transaction implements Serializable {
 
 	public void setBalanceBefore(double balanceBefore) {
 		this.balanceBefore = balanceBefore;
+	}
+
+	public String getOperation() {
+		return operation;
+	}
+
+	public void setOperation(String operation) {
+		this.operation = operation;
 	}
 
 }
